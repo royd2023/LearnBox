@@ -1,27 +1,39 @@
+from learnbox.mic import record_until_silence
+from learnbox import stt  # noqa: F401 — triggers Moonshine model load at startup
+from learnbox.stt import transcribe
 from learnbox.llm import ask
 
 
 def main():
-    print("LearnBox — type a question, or 'quit' to exit.\n")
+    print("LearnBox — press Enter to speak, Ctrl+C to quit.\n")
     while True:
         try:
-            user_input = input("You: ").strip()
+            input("[ Press Enter to speak ]")
         except (EOFError, KeyboardInterrupt):
             print("\nGoodbye.")
             break
 
-        if not user_input:
-            continue
-        if user_input.lower() in ("quit", "exit", "/bye"):
-            print("Goodbye.")
-            break
+        print("Listening...", flush=True)
+        audio = record_until_silence()
 
-        print("LearnBox: (thinking...)", flush=True)
+        if len(audio) == 0:
+            print("(no speech detected — try again)\n")
+            continue
+
+        transcript = transcribe(audio)
+
+        if not transcript.strip():
+            print("(could not transcribe — speak closer to the mic)\n")
+            continue
+
+        print(f"You: {transcript}")
+        print("Thinking...", flush=True)
+
         try:
-            response = ask(user_input, timeout=120.0)
-            print(f"LearnBox: {response}")
+            response = ask(transcript, timeout=120.0)
+            print(f"LearnBox: {response}\n")
         except RuntimeError as e:
-            print(f"Error: {e}")
+            print(f"Error: {e}\n")
 
 
 if __name__ == "__main__":

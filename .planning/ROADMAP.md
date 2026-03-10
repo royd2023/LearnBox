@@ -76,7 +76,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Audio Foundation | 2/2 | Complete   | 2026-03-10 |
+| 1. Audio Foundation | 2/2 | Complete    | 2026-03-10 |
 | 2. STT Integration | 0/TBD | Not started | - |
 | 3. TTS, Pipeline, and Display | 0/TBD | Not started | - |
 | 4. Pi Validation and Deployment | 0/TBD | Not started | - |

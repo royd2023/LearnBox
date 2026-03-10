@@ -1,1 +1,3 @@
 httpx
+sounddevice>=0.5.5
+numpy>=1.24.0

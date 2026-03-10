@@ -13,7 +13,7 @@ LearnBox starts with a working text-in, text-out LLM layer and extends it into a
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Audio Foundation** - Cross-platform audio capture, playback, and platform-neutral abstraction (completed 2026-03-10)
-- [ ] **Phase 2: STT Integration** - Moonshine speech-to-text wired to mic capture with push-to-talk gating
+- [x] **Phase 2: STT Integration** - Moonshine speech-to-text wired to mic capture with push-to-talk gating (completed 2026-03-10)
 - [ ] **Phase 3: TTS, Pipeline, and Display** - Piper TTS, full voice pipeline wiring, and on-screen text display
 - [ ] **Phase 4: Pi Validation and Deployment** - Hardware validation, RAM/latency profiling, and deployment setup on Raspberry Pi 5
 
@@ -81,6 +81,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Audio Foundation | 2/2 | Complete    | 2026-03-10 |
-| 2. STT Integration | 1/2 | In progress | - |
+| 2. STT Integration | 1/2 | Complete    | 2026-03-10 |
 | 3. TTS, Pipeline, and Display | 0/TBD | Not started | - |
 | 4. Pi Validation and Deployment | 0/TBD | Not started | - |

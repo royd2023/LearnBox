@@ -14,7 +14,11 @@ def main():
             break
 
         print("Listening...", flush=True)
-        audio = record_until_silence()
+        try:
+            audio = record_until_silence()
+        except KeyboardInterrupt:
+            print("\nGoodbye.")
+            break
 
         if len(audio) == 0:
             print("(no speech detected — try again)\n")

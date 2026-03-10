@@ -28,7 +28,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. Energy-based VAD correctly detects speech start and end — silence does not trigger recording
   3. The system plays back a test audio clip through the default speaker
   4. The same audio code runs unchanged on both Windows and Linux (Pi 5) — no platform-specific branches in calling code
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Add sounddevice/numpy deps + implement mic capture with energy-based VAD
+- [ ] 01-02-PLAN.md — Implement audio playback + automated tests + human round-trip verification
 
 ### Phase 2: STT Integration
 **Goal**: A spoken question is reliably transcribed to text using Moonshine on-device with visible listening feedback
@@ -72,7 +76,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Audio Foundation | 0/TBD | Not started | - |
+| 1. Audio Foundation | 0/2 | Not started | - |
 | 2. STT Integration | 0/TBD | Not started | - |
 | 3. TTS, Pipeline, and Display | 0/TBD | Not started | - |
 | 4. Pi Validation and Deployment | 0/TBD | Not started | - |

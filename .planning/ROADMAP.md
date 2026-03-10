@@ -44,7 +44,11 @@ Plans:
   3. A clearly visible "Thinking..." state is shown on screen while the LLM is generating
   4. A spoken school question ("What is photosynthesis?") transcribes to accurate text using Moonshine on-device
   5. An empty or inaudible recording does not pass an empty transcript downstream — the error is caught before reaching the LLM
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Add moonshine-voice dep + implement learnbox/stt.py + offline-safe tests
+- [ ] 02-02-PLAN.md — Update main.py with PTT voice loop + human end-to-end verification
 
 ### Phase 3: TTS, Pipeline, and Display
 **Goal**: The complete voice pipeline works end-to-end and the question and answer are shown on screen alongside audio
@@ -77,6 +81,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Audio Foundation | 2/2 | Complete    | 2026-03-10 |
-| 2. STT Integration | 0/TBD | Not started | - |
+| 2. STT Integration | 0/2 | Not started | - |
 | 3. TTS, Pipeline, and Display | 0/TBD | Not started | - |
 | 4. Pi Validation and Deployment | 0/TBD | Not started | - |

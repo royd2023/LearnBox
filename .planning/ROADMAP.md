@@ -12,7 +12,7 @@ LearnBox starts with a working text-in, text-out LLM layer and extends it into a
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Audio Foundation** - Cross-platform audio capture, playback, and platform-neutral abstraction
+- [x] **Phase 1: Audio Foundation** - Cross-platform audio capture, playback, and platform-neutral abstraction (completed 2026-03-10)
 - [ ] **Phase 2: STT Integration** - Moonshine speech-to-text wired to mic capture with push-to-talk gating
 - [ ] **Phase 3: TTS, Pipeline, and Display** - Piper TTS, full voice pipeline wiring, and on-screen text display
 - [ ] **Phase 4: Pi Validation and Deployment** - Hardware validation, RAM/latency profiling, and deployment setup on Raspberry Pi 5
@@ -31,8 +31,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 2 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Add sounddevice/numpy deps + implement mic capture with energy-based VAD
-- [ ] 01-02-PLAN.md — Implement audio playback + automated tests + human round-trip verification
+- [x] 01-01-PLAN.md — Add sounddevice/numpy deps + implement mic capture with energy-based VAD
+- [x] 01-02-PLAN.md — Implement audio playback + automated tests + human round-trip verification
 
 ### Phase 2: STT Integration
 **Goal**: A spoken question is reliably transcribed to text using Moonshine on-device with visible listening feedback
@@ -76,7 +76,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Audio Foundation | 0/2 | Not started | - |
+| 1. Audio Foundation | 2/2 | Complete   | 2026-03-10 |
 | 2. STT Integration | 0/TBD | Not started | - |
 | 3. TTS, Pipeline, and Display | 0/TBD | Not started | - |
 | 4. Pi Validation and Deployment | 0/TBD | Not started | - |

@@ -9,8 +9,8 @@
 
 - [ ] **AUD-01**: System captures microphone audio at 16kHz mono on both Windows and Pi 5
 - [ ] **AUD-02**: System uses energy-based VAD to detect start and end of speech
-- [ ] **AUD-03**: System plays synthesized audio through the default speaker
-- [ ] **AUD-04**: Audio capture and playback are abstracted behind a platform-neutral interface (Windows/Linux)
+- [x] **AUD-03**: System plays synthesized audio through the default speaker
+- [x] **AUD-04**: Audio capture and playback are abstracted behind a platform-neutral interface (Windows/Linux)
 
 ### STT
 
@@ -78,8 +78,8 @@
 |-------------|-------|--------|
 | AUD-01 | Phase 1 | Pending |
 | AUD-02 | Phase 1 | Pending |
-| AUD-03 | Phase 1 | Pending |
-| AUD-04 | Phase 1 | Pending |
+| AUD-03 | Phase 1 | Complete |
+| AUD-04 | Phase 1 | Complete |
 | STT-01 | Phase 2 | Pending |
 | STT-02 | Phase 2 | Pending |
 | STT-03 | Phase 2 | Pending |

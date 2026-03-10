@@ -5,35 +5,36 @@
 See: .planning/PROJECT.md (updated 2026-03-10)
 
 **Core value:** A student can ask any school question out loud and get a clear, accurate spoken answer — entirely offline.
-**Current focus:** Phase 1 - Audio Foundation
+**Current focus:** Phase 2 - STT Integration
 
 ## Current Position
 
-Phase: 1 of 4 (Audio Foundation)
-Plan: 0 of TBD in current phase
-Status: Ready to plan
-Last activity: 2026-03-10 — Roadmap created; all 22 v1 requirements mapped to 4 phases
+Phase: 1 of 4 (Audio Foundation) — COMPLETE; next: Phase 2 STT Integration
+Plan: 2 of 2 in Phase 1 (all complete)
+Status: Phase 1 complete — ready to plan Phase 2
+Last activity: 2026-03-10 — Phase 1 Audio Foundation complete (2/2 plans done, human round-trip verified)
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [██░░░░░░░░] 25%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 0
-- Average duration: -
-- Total execution time: 0 hours
+- Total plans completed: 2
+- Average duration: ~60 min/plan
+- Total execution time: ~2 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| - | - | - | - |
+| 01-audio-foundation | 2/2 | ~120 min | ~60 min |
 
 **Recent Trend:**
-- Last 5 plans: none yet
-- Trend: -
+- Last 5 plans: 01-01 (~60 min), 01-02 (~60 min)
+- Trend: On pace
 
 *Updated after each plan completion*
+| Phase 01-audio-foundation P02 | 60 | 3 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -45,6 +46,8 @@ Recent decisions affecting current work:
 - [Pre-work]: qwen2.5:1.5b chosen over 0.5b — 0.5b had 2+ wrong answers in benchmark; 1.5b passed all 10
 - [Pre-work]: Push-to-talk gating chosen over always-on wake word — zero RAM overhead, more reliable
 - [Pre-work]: Sequential synchronous pipeline (no asyncio) — all blocking ops use C extensions that don't yield to event loop
+- [Phase 01-audio-foundation]: sd.wait() mandatory after sd.play() to enforce blocking playback contract and prevent Phase 3 pipeline overlap
+- [Phase 01-audio-foundation]: play_audio accepts int16 and float32 without conversion; sounddevice handles both natively
 
 ### Pending Todos
 
@@ -59,5 +62,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-10
-Stopped at: Roadmap created; ready to plan Phase 1
+Stopped at: Completed 01-audio-foundation 01-02-PLAN.md — Phase 1 Audio Foundation complete
 Resume file: None

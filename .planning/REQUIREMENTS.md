@@ -14,8 +14,8 @@
 
 ### STT
 
-- [ ] **STT-01**: System transcribes spoken input to text using Moonshine (base-en) on-device
-- [ ] **STT-02**: System uses push-to-talk gating (button/key press) to start listening
+- [x] **STT-01**: System transcribes spoken input to text using Moonshine (base-en) on-device
+- [x] **STT-02**: System uses push-to-talk gating (button/key press) to start listening
 - [ ] **STT-03**: System shows a "listening" feedback state while recording
 - [ ] **STT-04**: System shows a "thinking" feedback state while LLM is generating
 
@@ -80,8 +80,8 @@
 | AUD-02 | Phase 1 | Pending |
 | AUD-03 | Phase 1 | Complete |
 | AUD-04 | Phase 1 | Complete |
-| STT-01 | Phase 2 | Pending |
-| STT-02 | Phase 2 | Pending |
+| STT-01 | Phase 2 | Complete |
+| STT-02 | Phase 2 | Complete |
 | STT-03 | Phase 2 | Pending |
 | STT-04 | Phase 2 | Pending |
 | TTS-01 | Phase 3 | Pending |

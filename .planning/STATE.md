@@ -9,32 +9,34 @@ See: .planning/PROJECT.md (updated 2026-03-10)
 
 ## Current Position
 
-Phase: 1 of 4 (Audio Foundation) — COMPLETE; next: Phase 2 STT Integration
-Plan: 2 of 2 in Phase 1 (all complete)
-Status: Phase 1 complete — ready to plan Phase 2
-Last activity: 2026-03-10 — Phase 1 Audio Foundation complete (2/2 plans done, human round-trip verified)
+Phase: 2 of 4 (STT Integration) — IN PROGRESS
+Plan: 1 of 1 in Phase 2 (02-01 complete)
+Status: Phase 2 Plan 1 complete — Moonshine STT module built and tested
+Last activity: 2026-03-10 — Phase 2 Plan 1 complete (stt.py, 5 offline tests, 12/12 passing)
 
-Progress: [██░░░░░░░░] 25%
+Progress: [███░░░░░░░] 37%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 2
-- Average duration: ~60 min/plan
-- Total execution time: ~2 hours
+- Total plans completed: 3
+- Average duration: ~45 min/plan
+- Total execution time: ~2h 15m
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-audio-foundation | 2/2 | ~120 min | ~60 min |
+| 02-stt-integration | 1/1 | ~15 min | ~15 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (~60 min), 01-02 (~60 min)
+- Last 5 plans: 01-01 (~60 min), 01-02 (~60 min), 02-01 (~15 min)
 - Trend: On pace
 
 *Updated after each plan completion*
 | Phase 01-audio-foundation P02 | 60 | 3 tasks | 3 files |
+| Phase 02-stt-integration P01 | 15 | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -48,6 +50,9 @@ Recent decisions affecting current work:
 - [Pre-work]: Sequential synchronous pipeline (no asyncio) — all blocking ops use C extensions that don't yield to event loop
 - [Phase 01-audio-foundation]: sd.wait() mandatory after sd.play() to enforce blocking playback contract and prevent Phase 3 pipeline overlap
 - [Phase 01-audio-foundation]: play_audio accepts int16 and float32 without conversion; sounddevice handles both natively
+- [Phase 02-stt-integration]: Transcriber initialized at module level — model load cost paid once at import, not per transcribe() call
+- [Phase 02-stt-integration]: int16->float32 conversion (/ 32768.0) belongs in stt.py, not mic.py — mic.py stays dtype-agnostic per its design contract
+- [Phase 02-stt-integration]: FakeTranscriber monkeypatching pattern established for offline STT tests — patches _transcriber instance, not the class
 
 ### Pending Todos
 
@@ -62,5 +67,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-10
-Stopped at: Completed 01-audio-foundation 01-02-PLAN.md — Phase 1 Audio Foundation complete
+Stopped at: Completed 02-stt-integration 02-01-PLAN.md — Moonshine STT module complete
 Resume file: None

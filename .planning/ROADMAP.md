@@ -47,7 +47,7 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — Add moonshine-voice dep + implement learnbox/stt.py + offline-safe tests
+- [x] 02-01-PLAN.md — Add moonshine-voice dep + implement learnbox/stt.py + offline-safe tests
 - [ ] 02-02-PLAN.md — Update main.py with PTT voice loop + human end-to-end verification
 
 ### Phase 3: TTS, Pipeline, and Display
@@ -81,6 +81,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Audio Foundation | 2/2 | Complete    | 2026-03-10 |
-| 2. STT Integration | 0/2 | Not started | - |
+| 2. STT Integration | 1/2 | In progress | - |
 | 3. TTS, Pipeline, and Display | 0/TBD | Not started | - |
 | 4. Pi Validation and Deployment | 0/TBD | Not started | - |

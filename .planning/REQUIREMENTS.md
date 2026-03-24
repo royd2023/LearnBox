@@ -21,10 +21,10 @@
 
 ### TTS
 
-- [ ] **TTS-01**: System synthesizes LLM text responses to speech using Piper on-device
-- [ ] **TTS-02**: System plays a short "thinking" audio cue immediately after transcription (before LLM response)
-- [ ] **TTS-03**: System strips markdown formatting from LLM response before synthesis
-- [ ] **TTS-04**: System shows a "speaking" feedback state during audio playback
+- [x] **TTS-01**: System synthesizes LLM text responses to speech using Piper on-device
+- [x] **TTS-02**: System plays a short "thinking" audio cue immediately after transcription (before LLM response)
+- [x] **TTS-03**: System strips markdown formatting from LLM response before synthesis
+- [x] **TTS-04**: System shows a "speaking" feedback state during audio playback
 
 ### Pipeline
 
@@ -84,10 +84,10 @@
 | STT-02 | Phase 2 | Complete |
 | STT-03 | Phase 2 | Pending |
 | STT-04 | Phase 2 | Pending |
-| TTS-01 | Phase 3 | Pending |
-| TTS-02 | Phase 3 | Pending |
-| TTS-03 | Phase 3 | Pending |
-| TTS-04 | Phase 3 | Pending |
+| TTS-01 | Phase 3 | Complete |
+| TTS-02 | Phase 3 | Complete |
+| TTS-03 | Phase 3 | Complete |
+| TTS-04 | Phase 3 | Complete |
 | PIPE-01 | Phase 3 | Pending |
 | PIPE-02 | Phase 3 | Pending |
 | PIPE-03 | Phase 3 | Pending |

@@ -63,7 +63,7 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 03-01-PLAN.md — Add piper-tts dep + implement learnbox/tts.py + offline-safe tests
+- [x] 03-01-PLAN.md — Add piper-tts dep + implement learnbox/tts.py + offline-safe tests
 - [ ] 03-02-PLAN.md — Wire full pipeline in main.py + display states + error handling + human verification
 
 ### Phase 4: Pi Validation and Deployment
@@ -86,5 +86,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. Audio Foundation | 2/2 | Complete    | 2026-03-10 |
 | 2. STT Integration | 1/2 | Complete    | 2026-03-10 |
-| 3. TTS, Pipeline, and Display | 0/2 | Not started | - |
+| 3. TTS, Pipeline, and Display | 1/2 | In Progress|  |
 | 4. Pi Validation and Deployment | 0/TBD | Not started | - |

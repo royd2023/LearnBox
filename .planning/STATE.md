@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-03-10)
 
 **Core value:** A student can ask any school question out loud and get a clear, accurate spoken answer — entirely offline.
-**Current focus:** Phase 3 - TTS Pipeline and Display
+**Current focus:** Phase 4 - Pi Deployment and Integration Testing
 
 ## Current Position
 
-Phase: 3 of 4 (TTS Pipeline and Display) — IN PROGRESS
-Plan: 1 of 2 in Phase 3 (03-01 complete)
-Status: Phase 3 Plan 1 complete — Piper TTS module built and tested (learnbox/tts.py, 6 offline tests, 18/18 passing)
-Last activity: 2026-03-24 — Phase 3 Plan 1 complete (tts.py, 6 offline tests, 18/18 passing)
+Phase: 3 of 4 (TTS Pipeline and Display) — COMPLETE
+Plan: 2 of 2 in Phase 3 (03-02 complete)
+Status: Phase 3 complete — full voice pipeline working end-to-end. Student speaks, hears spoken answer. 18/18 tests passing.
+Last activity: 2026-03-24 — Phase 3 Plan 2 complete (main.py wired, human-verified end-to-end on Windows)
 
-Progress: [█████░░░░░] 50%
+Progress: [███████░░░] 75%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 4
-- Average duration: ~40 min/plan
-- Total execution time: ~2h 40m
+- Total plans completed: 5
+- Average duration: ~35 min/plan
+- Total execution time: ~2h 50m
 
 **By Phase:**
 
@@ -29,16 +29,17 @@ Progress: [█████░░░░░] 50%
 |-------|-------|-------|----------|
 | 01-audio-foundation | 2/2 | ~120 min | ~60 min |
 | 02-stt-integration | 1/1 | ~15 min | ~15 min |
-| 03-tts-pipeline-and-display | 1/2 | ~25 min | ~25 min |
+| 03-tts-pipeline-and-display | 2/2 | ~35 min | ~17 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (~60 min), 01-02 (~60 min), 02-01 (~15 min), 03-01 (~25 min)
-- Trend: On pace
+- Last 5 plans: 01-01 (~60 min), 01-02 (~60 min), 02-01 (~15 min), 03-01 (~25 min), 03-02 (~10 min)
+- Trend: Accelerating
 
 *Updated after each plan completion*
 | Phase 01-audio-foundation P02 | 60 | 3 tasks | 3 files |
 | Phase 02-stt-integration P01 | 15 | 2 tasks | 3 files |
 | Phase 03-tts-pipeline-and-display P01 | 25 | 2 tasks | 5 files |
+| Phase 03-tts-pipeline-and-display P02 | 10 | 2 tasks | 1 file |
 
 ## Accumulated Context
 
@@ -59,6 +60,8 @@ Recent decisions affecting current work:
 - [Phase 03-tts-pipeline-and-display]: Model-file existence check before piper.voice import — gives informative RuntimeError with download command
 - [Phase 03-tts-pipeline-and-display]: Monkeypatch target is learnbox.tts.play_audio (import binding), not learnbox.audio.play_audio
 - [Phase 03-tts-pipeline-and-display]: speak_error() catches all Exception and falls back to print() — TTS failure must never crash the pipeline
+- [Phase 03-tts-pipeline-and-display]: from learnbox import tts at module level in main.py — triggers PiperVoice.load at startup before first question
+- [Phase 03-tts-pipeline-and-display]: speak(response) in isolated try/except separate from LLM error handler — TTS and LLM failure modes are independent
 
 ### Pending Todos
 
@@ -74,5 +77,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-24
-Stopped at: Completed 03-tts-pipeline-and-display 03-01-PLAN.md — Piper TTS module complete
+Stopped at: Completed Phase 3 (03-tts-pipeline-and-display) — full voice pipeline human-verified end-to-end on Windows
 Resume file: None

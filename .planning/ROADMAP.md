@@ -60,7 +60,11 @@ Plans:
   3. The transcribed question and LLM response are both shown as text on screen during and after the voice interaction
   4. The microphone does not capture audio while TTS is playing — the system cannot trigger itself
   5. An error at any pipeline stage (empty transcript, LLM timeout, TTS failure) produces a spoken error message rather than silent failure
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 03-01-PLAN.md — Add piper-tts dep + implement learnbox/tts.py + offline-safe tests
+- [ ] 03-02-PLAN.md — Wire full pipeline in main.py + display states + error handling + human verification
 
 ### Phase 4: Pi Validation and Deployment
 **Goal**: The complete system runs reliably on Raspberry Pi 5 within the hardware constraints and can be set up from scratch offline
@@ -82,5 +86,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. Audio Foundation | 2/2 | Complete    | 2026-03-10 |
 | 2. STT Integration | 1/2 | Complete    | 2026-03-10 |
-| 3. TTS, Pipeline, and Display | 0/TBD | Not started | - |
+| 3. TTS, Pipeline, and Display | 0/2 | Not started | - |
 | 4. Pi Validation and Deployment | 0/TBD | Not started | - |

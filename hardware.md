@@ -14,14 +14,14 @@ Recommended components for building a LearnBox device.
 
 | Component | Notes | Est. Cost |
 |-----------|-------|-----------|
-| MicroSD card (32GB+) | Any reputable brand (Samsung, SanDisk) | ~$8-10 |
-| Official Pi 5 USB-C power supply (27W) | Do not cheap out — underpowered PSUs cause instability | ~$12-15 |
-| USB microphone | Any basic USB mic works | ~$10-15 |
-| Speaker | 3.5mm or USB | ~$10-15 |
+| MicroSD card (32GB+) | Patriot LX Series 32GB Class 10 UHS-I microSDHC | $10.49 |
+| USB-C Power Supply (27W) | RasTech GaN PD 27W 5.1V 5A for Raspberry Pi 5 | $12.99 |
+| USB microphone | SunFounder USB 2.0 Mini Mic — Pi 5 compatible, no driver | $7.99 |
+| USB speaker | HONKYOB USB Mini Speaker — plug and play, no driver | $13.99 |
 
 ## Total Estimated Cost
 
-~$105-120 — significantly cheaper than a tablet or laptop, with no subscription, no internet required, and no account needed.
+~$110.46 — significantly cheaper than a tablet or laptop, with no subscription, no internet required, and no account needed.
 
 ## Notes
 

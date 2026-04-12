@@ -1,9 +1,9 @@
 from learnbox.mic import record_until_silence
 from learnbox import stt    # noqa: F401 — triggers Moonshine model load at startup
 from learnbox.stt import transcribe
-from learnbox.llm import ask
+from learnbox.llm import stream_ask
 from learnbox import tts    # noqa: F401 — triggers Piper voice model load at startup
-from learnbox.tts import speak, speak_error, play_thinking_cue
+from learnbox.tts import speak_streaming, speak_error, play_thinking_cue
 
 
 def main():
@@ -38,22 +38,18 @@ def main():
         # --- THINKING CUE ---
         play_thinking_cue()   # TTS-02: plays before LLM call; <500ms
 
-        # --- LLM ---
+        # --- LLM + TTS (streaming) ---
         print("Thinking...", flush=True)
         try:
-            response = ask(transcript, timeout=120.0)
+            response = speak_streaming(stream_ask(transcript, timeout=120.0))
         except RuntimeError as e:
             speak_error(f"Sorry, I could not get an answer. {e}")
             continue
-
-        print(f"LearnBox: {response}\n", flush=True)  # DISP-02
-
-        # --- TTS ---
-        print("Speaking...", flush=True)   # TTS-04
-        try:
-            speak(response)
         except Exception as e:
             print(f"(TTS failed: {e})\n", flush=True)
+            continue
+
+        print(f"LearnBox: {response}\n", flush=True)  # DISP-02
 
 
 if __name__ == "__main__":

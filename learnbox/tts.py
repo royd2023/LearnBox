@@ -82,6 +82,35 @@ def speak(text: str) -> None:
         play_audio(np.concatenate(all_audio), sample_rate)
 
 
+def speak_streaming(token_iter) -> str:
+    """
+    Consume a token iterator from stream_ask(), buffer into sentences,
+    and speak each sentence as soon as it's complete.
+
+    Returns the full response text for display.
+    """
+    sentence_endings = {'.', '!', '?'}
+    buffer = ""
+    full_text = ""
+
+    for token in token_iter:
+        buffer += token
+        full_text += token
+        # Speak whenever we hit a sentence boundary followed by a space or end
+        if any(buffer.rstrip().endswith(p) for p in sentence_endings):
+            sentence = strip_markdown(buffer.strip())
+            if sentence:
+                speak(sentence)
+            buffer = ""
+
+    # Speak any remaining text
+    remainder = strip_markdown(buffer.strip())
+    if remainder:
+        speak(remainder)
+
+    return full_text.strip()
+
+
 def speak_error(message: str) -> None:
     """Speak an error message; falls back to print if TTS itself fails (PIPE-04)."""
     try:

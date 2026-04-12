@@ -70,18 +70,48 @@ Make sure the Ollama daemon is running before starting LearnBox (system tray on 
 
 ## Running
 
+### On Windows (development)
+
 ```bash
 python main.py
-```
-
-```
-LearnBox — press Enter to speak, Ctrl+C to quit.
 ```
 
 - Press **Enter** to start recording
 - Ask your question
 - LearnBox plays a short audio cue, then speaks the answer
 - Press **Ctrl+C** to exit
+
+### On Raspberry Pi 5
+
+LearnBox auto-starts on boot as a systemd service. Just power on and press the button to speak.
+
+**Stop the service:**
+```bash
+sudo systemctl stop learnbox
+```
+
+**Start the service manually:**
+```bash
+sudo systemctl start learnbox
+```
+
+**View live logs:**
+```bash
+journalctl -u learnbox -f
+```
+
+**Run manually (after stopping the service):**
+```bash
+cd ~/LearnBox
+source venv/bin/activate
+python main.py
+```
+
+**Safe shutdown — always do this before unplugging:**
+```bash
+sudo shutdown now
+```
+Wait for the green activity light to stop blinking before unplugging power.
 
 ---
 

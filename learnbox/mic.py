@@ -8,6 +8,8 @@ float32 conversion before Moonshine:
 
 import numpy as np
 import sounddevice as sd
+from scipy.signal import resample_poly
+from math import gcd
 
 SAMPLE_RATE = 16000       # Hz — required for Moonshine compatibility (Phase 2)
 CHANNELS = 1              # mono
@@ -16,6 +18,25 @@ CHUNK_FRAMES = 1600       # 100ms per chunk at 16kHz
 DEFAULT_SILENCE_RMS = 300 # int16-scale RMS; tune per environment
 SILENCE_CHUNKS = 10       # 1.0s consecutive silence = end of speech
 MAX_RECORD_CHUNKS = 150   # 15s max recording cap — prevents unbounded capture
+
+
+def _get_capture_rate() -> int:
+    """Return the device's native sample rate, falling back to SAMPLE_RATE."""
+    try:
+        info = sd.query_devices(kind="input")
+        return int(info["default_samplerate"])
+    except Exception:
+        return SAMPLE_RATE
+
+
+def _resample(audio: np.ndarray, from_rate: int, to_rate: int) -> np.ndarray:
+    """Resample int16 audio from from_rate to to_rate."""
+    if from_rate == to_rate:
+        return audio
+    g = gcd(from_rate, to_rate)
+    up, down = to_rate // g, from_rate // g
+    resampled = resample_poly(audio.astype(np.float32), up, down)
+    return np.clip(resampled, -32768, 32767).astype(np.int16)
 
 
 def list_devices() -> None:
@@ -38,16 +59,18 @@ def calibrate_silence(duration_s: float = 1.0) -> int:
     Returns:
         An integer silence threshold >= 100.
     """
-    num_chunks = max(1, int(duration_s * SAMPLE_RATE / CHUNK_FRAMES))
+    capture_rate = _get_capture_rate()
+    chunk_frames = int(capture_rate * 0.1)  # 100ms chunks at native rate
+    num_chunks = max(1, int(duration_s * capture_rate / chunk_frames))
     all_frames: list[np.ndarray] = []
 
     with sd.InputStream(
-        samplerate=SAMPLE_RATE,
+        samplerate=capture_rate,
         channels=CHANNELS,
         dtype=DTYPE,
     ) as stream:
         for _ in range(num_chunks):
-            chunk, _ = stream.read(CHUNK_FRAMES)
+            chunk, _ = stream.read(chunk_frames)
             all_frames.append(chunk)
 
     combined = np.concatenate(all_frames, axis=0)
@@ -95,18 +118,20 @@ def record_until_silence(
 
             audio_float32 = audio_int16.astype(np.float32) / 32768.0
     """
+    capture_rate = _get_capture_rate()
+    chunk_frames = int(capture_rate * 0.1)  # 100ms chunks at native rate
     frames: list[np.ndarray] = []
     speech_started = False
     silent_count = 0
     total_chunks = 0
 
     with sd.InputStream(
-        samplerate=SAMPLE_RATE,
+        samplerate=capture_rate,
         channels=CHANNELS,
         dtype=DTYPE,
     ) as stream:
         while True:
-            chunk, _ = stream.read(CHUNK_FRAMES)
+            chunk, _ = stream.read(chunk_frames)
             total_chunks += 1
             rms = float(np.sqrt(np.mean(chunk.astype(np.float32) ** 2)))
 
@@ -115,7 +140,6 @@ def record_until_silence(
                     speech_started = True
                     silent_count = 0
                     frames.append(chunk.copy())
-                # Cap pre-speech wait at the same MAX_RECORD_CHUNKS limit
                 elif total_chunks >= MAX_RECORD_CHUNKS:
                     break
             else:
@@ -133,4 +157,5 @@ def record_until_silence(
     if not frames:
         return np.zeros(0, dtype=np.int16)
 
-    return np.concatenate(frames, axis=0).flatten()
+    raw = np.concatenate(frames, axis=0).flatten()
+    return _resample(raw, capture_rate, SAMPLE_RATE)

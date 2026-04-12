@@ -49,14 +49,18 @@ def play_thinking_cue() -> None:
 
 
 def strip_markdown(text: str) -> str:
-    """Remove markdown formatting from LLM response text before synthesis (TTS-03)."""
-    text = re.sub(r'\*{1,2}([^*\n]+)\*{1,2}', r'\1', text)      # **bold**, *italic*
-    text = re.sub(r'_{1,2}([^_\n]+)_{1,2}', r'\1', text)         # __bold__, _italic_
-    text = re.sub(r'^#{1,6}\s+', '', text, flags=re.MULTILINE)    # ## Headings
-    text = re.sub(r'^\s*[-*]\s+', '', text, flags=re.MULTILINE)   # - list items
-    text = re.sub(r'^\s*\d+\.\s+', '', text, flags=re.MULTILINE)  # 1. ordered list
-    text = re.sub(r'```[\s\S]*?```', '', text)                     # code blocks
-    text = re.sub(r'`([^`]+)`', r'\1', text)                       # inline code
+    """Remove markdown and LaTeX formatting from LLM response text before synthesis (TTS-03)."""
+    text = re.sub(r'\$\$[\s\S]*?\$\$', '', text)                  # $$block math$$
+    text = re.sub(r'\$[^$\n]+\$', '', text)                        # $inline math$
+    text = re.sub(r'\\\[[\s\S]*?\\\]', '', text)                   # \[block math\]
+    text = re.sub(r'\\\([\s\S]*?\\\)', '', text)                   # \(inline math\)
+    text = re.sub(r'\*{1,2}([^*\n]+)\*{1,2}', r'\1', text)        # **bold**, *italic*
+    text = re.sub(r'_{1,2}([^_\n]+)_{1,2}', r'\1', text)          # __bold__, _italic_
+    text = re.sub(r'^#{1,6}\s+', '', text, flags=re.MULTILINE)     # ## Headings
+    text = re.sub(r'^\s*[-*]\s+', '', text, flags=re.MULTILINE)    # - list items
+    text = re.sub(r'^\s*\d+\.\s+', '', text, flags=re.MULTILINE)   # 1. ordered list
+    text = re.sub(r'```[\s\S]*?```', '', text)                      # code blocks
+    text = re.sub(r'`([^`]+)`', r'\1', text)                        # inline code
     text = re.sub(r'\n{3,}', '\n\n', text)
     return text.strip()
 

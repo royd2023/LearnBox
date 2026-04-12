@@ -19,9 +19,9 @@ Push a button (or press Enter), speak your question, and LearnBox transcribes it
 ## Requirements
 
 - Python 3.11
-- [Ollama](https://ollama.com) running locally with the `qwen2.5:1.5b` model pulled
+- [Ollama](https://ollama.com) running locally with the `qwen2.5:0.5b` model pulled
 - A microphone and speaker connected to your device
-- ~1.2 GB of disk space for the three ML models
+- ~350 MB of disk space for the three ML models
 
 ---
 
@@ -50,18 +50,18 @@ python -m moonshine_voice.download --language en
 
 Model is cached at `~/.cache/moonshine_voice/` (Linux) or `%LOCALAPPDATA%\moonshine_voice\` (Windows).
 
-### 4. Download the Piper TTS voice model (~60 MB)
+### 4. Download the Piper TTS voice model (~5 MB)
 
 ```bash
-python3 -m piper.download_voices en_US-lessac-medium --data-dir models/
+python3 -m piper.download_voices en_US-lessac-low --data-dir models/
 ```
 
-This creates `models/en_US-lessac-medium.onnx` and its config file.
+This creates `models/en_US-lessac-low.onnx` and its config file.
 
-### 5. Pull the Ollama LLM (~940 MB)
+### 5. Pull the Ollama LLM (~290 MB)
 
 ```bash
-ollama pull qwen2.5:1.5b
+ollama pull qwen2.5:0.5b
 ```
 
 Make sure the Ollama daemon is running before starting LearnBox (system tray on Windows, `ollama serve` on Linux/Pi).
@@ -151,10 +151,10 @@ No `.env` file needed. Key constants live in each module:
 | Module | Constant | Default | Notes |
 |--------|----------|---------|-------|
 | `llm.py` | `OLLAMA_URL` | `http://localhost:11434/api/generate` | Local Ollama endpoint |
-| `llm.py` | `MODEL` | `qwen2.5:1.5b` | LLM model name |
+| `llm.py` | `MODEL` | `qwen2.5:0.5b` | LLM model name |
 | `mic.py` | `SAMPLE_RATE` | `16000` | Hz — matches Moonshine requirement |
-| `mic.py` | `DEFAULT_SILENCE_RMS` | `300` | Tune this if mic sensitivity is off |
-| `tts.py` | `MODEL_PATH` | `models/en_US-lessac-medium.onnx` | Piper voice model |
+| `mic.py` | `DEFAULT_SILENCE_RMS` | `300` | Tune this if mic sensitivity is off (auto-calibrated at startup) |
+| `tts.py` | `MODEL_PATH` | `models/en_US-lessac-low.onnx` | Piper voice model |
 
 To calibrate the silence threshold for your microphone:
 
@@ -182,6 +182,6 @@ See [`hardware.md`](hardware.md) for the full parts list (~$110). Key components
 | 1 | Audio capture & playback | Complete |
 | 2 | Moonshine STT integration | Complete |
 | 3 | Piper TTS + full pipeline wiring | Complete |
-| 4 | Pi 5 validation & deployment scripts | Pending |
+| 4 | Pi 5 validation & deployment | Complete |
 
-The full voice pipeline works end-to-end on Windows. Pi 5 hardware validation and setup scripts are the remaining work.
+The full voice pipeline runs end-to-end on Raspberry Pi 5. LearnBox auto-starts on boot, triggered by a physical GPIO button.

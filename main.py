@@ -1,3 +1,11 @@
+try:
+    from gpiozero import Button as _GPIOButton
+    _button = _GPIOButton(17, pull_up=True)
+    _USE_GPIO = True
+except Exception:
+    _button = None
+    _USE_GPIO = False
+
 from learnbox.mic import record_until_silence, calibrate_silence
 from learnbox import stt    # noqa: F401 — triggers Moonshine model load at startup
 from learnbox.stt import transcribe
@@ -6,14 +14,26 @@ from learnbox import tts    # noqa: F401 — triggers Piper voice model load at 
 from learnbox.tts import speak_streaming, speak_error, play_thinking_cue
 
 
+def _wait_for_trigger():
+    """Block until button press (Pi) or Enter key (fallback)."""
+    if _USE_GPIO:
+        print("[ Press button to speak ]", flush=True)
+        _button.wait_for_press()
+    else:
+        input("[ Press Enter to speak ]")
+
+
 def main():
-    print("LearnBox — press Enter to speak, Ctrl+C to quit.\n")
+    if _USE_GPIO:
+        print("LearnBox — press the button to speak, Ctrl+C to quit.\n")
+    else:
+        print("LearnBox — press Enter to speak, Ctrl+C to quit.\n")
     print("Calibrating microphone...", flush=True)
     silence_threshold = calibrate_silence()
     print(f"Mic calibrated (threshold: {silence_threshold})\n", flush=True)
     while True:
         try:
-            input("[ Press Enter to speak ]")
+            _wait_for_trigger()
         except (EOFError, KeyboardInterrupt):
             print("\nGoodbye.")
             break

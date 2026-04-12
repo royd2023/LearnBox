@@ -22,12 +22,12 @@ import numpy as np
 
 from learnbox.audio import play_audio
 
-MODEL_PATH = Path(__file__).parent.parent / "models" / "en_US-lessac-medium.onnx"
+MODEL_PATH = Path(__file__).parent.parent / "models" / "en_US-lessac-low.onnx"
 
 if not MODEL_PATH.exists():
     raise RuntimeError(
         f"Piper voice model not found at {MODEL_PATH}.\n"
-        "Run: python3 -m piper.download_voices en_US-lessac-medium --data-dir models/"
+        "Run: python3 -m piper.download_voices en_US-lessac-low --data-dir models/"
     )
 
 from piper.voice import PiperVoice  # noqa: E402 — import after path check
